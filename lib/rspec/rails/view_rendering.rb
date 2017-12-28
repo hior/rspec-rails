@@ -133,21 +133,21 @@ module RSpec
         hash[path] = EmptyTemplateResolver.build(path)
       end
 
-      included do
-        before do
-          unless render_views?
-            @_original_path_set = controller.class.view_paths
-            path_set = @_original_path_set.map { |resolver| RESOLVER_CACHE[resolver.to_s] }
+     # included do
+     #   before do
+     #     unless render_views?
+     #       @_original_path_set = controller.class.view_paths
+     #       path_set = @_original_path_set.map { |resolver| RESOLVER_CACHE[resolver.to_s] }
 
-            controller.class.view_paths = path_set
-            controller.extend(EmptyTemplates)
-          end
-        end
+     #       controller.class.view_paths = path_set
+     #       controller.extend(EmptyTemplates)
+     #     end
+     #   end
 
-        after do
-          controller.class.view_paths = @_original_path_set unless render_views?
-        end
-      end
+     #   after do
+     #     controller.class.view_paths = @_original_path_set unless render_views?
+     #   end
+     # end
     end
   end
 end
